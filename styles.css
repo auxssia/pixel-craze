@@ -292,3 +292,124 @@ p { font-size: var(--body-size); }
     font-weight: 600;
     letter-spacing: 2px;
 }
+/* --- UPDATED SPACING LOGIC --- */
+
+:root {
+    /* Fluid spacing variables */
+    --section-spacing-desktop: 140px;
+    --section-spacing-mobile: 80px;
+    --container-gutter: 24px;
+}
+
+/* 1. Improved Container Logic */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--container-gutter);
+}
+
+/* 2. Responsive Section Padding */
+.section-padding { 
+    padding: var(--section-spacing-desktop) 0; 
+}
+
+@media (max-width: 768px) {
+    .section-padding { 
+        padding: var(--section-spacing-mobile) 0; 
+    }
+}
+
+/* 3. Hero Mobile Spacing Fix */
+.hero { 
+    padding: 160px 0 80px; 
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 100px 0 60px; /* Reduced top padding so content is visible sooner */
+        text-align: center;
+    }
+    
+    .hero-sub {
+        margin: 24px auto 40px; /* Centering the sub-text */
+        line-height: 1.6;
+    }
+
+    .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 16px; /* Stack buttons on small screens */
+        align-items: center;
+    }
+
+    .btn-primary {
+        width: 100%; /* Full width buttons are easier to tap on phones */
+        max-width: 320px;
+        text-align: center;
+    }
+}
+
+/* 4. Bento Grid Mobile Polish */
+@media (max-width: 900px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        gap: 16px; /* Tighter gap for a more cohesive mobile look */
+    }
+
+    .bento-card {
+        padding: 32px; /* Slightly less padding than desktop to save screen real estate */
+        min-height: 240px;
+        justify-content: flex-start; /* Move text to top for better thumb-scrolling readability */
+    }
+
+    .bento-card.tall, .bento-card.wide {
+        grid-row: auto;
+        grid-column: auto;
+    }
+
+    .card-num {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+/* 5. Mobile Navbar Spacing */
+@media (max-width: 600px) {
+    .navbar {
+        height: auto;
+        padding: 16px 0;
+    }
+
+    .nav-content {
+        flex-direction: row; /* Keep logo and menu on one line if possible */
+        justify-content: space-between;
+    }
+
+    .nav-links {
+        display: none; /* In a true pro site, we'd use a hamburger here, but for now, let's keep it simple */
+    }
+
+    /* Alternatively, if you want to keep links, use this: */
+    /*
+    .nav-links {
+        display: flex;
+        gap: 12px;
+    }
+    .nav-links a {
+        font-size: 0.7rem;
+        margin: 0;
+    }
+    */
+}
+
+/* 6. Social Proof Spacing */
+.social-proof {
+    padding: 40px 0;
+    margin-top: 40px; /* Space it out from the philosophy section */
+}
+
+@media (max-width: 600px) {
+    .proof-track {
+        gap: 40px; /* Bring logos closer on mobile */
+    }
+}
