@@ -1,151 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelCraze Studio — Growth Infrastructure for Business</title>
-    <meta name="description" content="I build systems that make small businesses feel bigger. Websites, WhatsApp automation, and custom tools.">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>PixelCraze Studio — Digital systems for growing businesses</title>
+  <meta name="description" content="PixelCraze Studio builds calm, reliable websites, WhatsApp automation, and custom tools that reduce manual work for small businesses." />
+
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
+  <header>
+    <nav>
+      <span class="brand">PixelCraze Studio</span>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
 
-    <header class="site-header">
-        <nav class="container nav-container">
-            <span class="brand-name">PixelCraze Studio</span>
-            <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#generator">Engine</a>
-                <a href="#contact">Contact</a>
-            </div>
-        </nav>
-    </header>
+  <main>
+    <!-- Hero -->
+    <section class="hero" aria-label="Introduction">
+      <h1>I build systems that make small businesses feel bigger.</h1>
+      <p>
+        Websites, WhatsApp automation, and custom tools that reduce manual work and help you respond faster, book more, and look professional — without complexity.
+      </p>
+      <div class="hero-actions">
+        <a href="#services" class="primary-link">See what I can build →</a>
+        <a href="#contact" class="secondary-link">Or talk to me directly</a>
+      </div>
+    </section>
 
-    <main>
-        <section class="hero-section container">
-            <div class="content-narrow">
-                <h1>I build systems that make small businesses feel bigger.</h1>
-                <p class="hero-subtext">
-                    Websites, WhatsApp automation, and custom tools that reduce manual work—helping you respond faster and look professional without the complexity.
-                </p>
-                <div class="hero-actions">
-                    <a href="#generator" class="btn-primary">See what I can build →</a>
-                    <a href="#contact" class="link-secondary">Or talk to me directly</a>
-                </div>
-            </div>
-        </section>
+    <!-- What I Actually Do -->
+    <section class="about">
+      <h2>This is not a typical web agency.</h2>
+      <p>Most agencies sell websites.</p>
+      <p>
+        I focus on business usefulness. That means fewer pages, smarter flows, and tools that actually save time — whether that’s a WhatsApp bot handling bookings or a document system that replaces repetitive work.
+      </p>
+    </section>
 
-        <section class="intro-section container">
-            <div class="content-medium">
-                <h2>This is not a typical web agency.</h2>
-                <div class="text-blocks">
-                    <p>Most agencies sell pages. I focus on <strong>business usefulness.</strong></p>
-                    <p>That means smarter flows and tools that actually save time—whether that’s a WhatsApp bot handling your bookings or a document system that replaces repetitive paperwork.</p>
-                </div>
-            </div>
-        </section>
+    <!-- Services -->
+    <section class="services" id="services" aria-label="Services">
+      <h2>Services</h2>
 
-        <section id="services" class="services-section container">
-            <div class="content-wide">
-                <div class="services-grid">
-                    <article class="service-card card-1">
-                        <div class="service-tag">Automation</div>
-                        <h3>WhatsApp Systems</h3>
-                        <p>Booking bots and outreach flows built around how you actually talk to customers.</p>
-                        <div class="flow-mini-map">
-                            <span class="dot">Inquiry</span>
-                            <span class="line"></span>
-                            <span class="dot accent">Bot Logic</span>
-                            <span class="line"></span>
-                            <span class="dot">Booking</span>
-                        </div>
-                    </article>
+      <div class="service-list">
+        <article class="service service-offset">
+          <h3>WhatsApp Automation</h3>
+          <p>
+            Booking bots, auto-replies, follow-ups, and outreach flows — built around how your business actually talks to customers.
+          </p>
+        </article>
 
-                    <article class="service-card card-2">
-                        <div class="service-tag">Engine</div>
-                        <h3>Instant Web Engine</h3>
-                        <p>A fast, clean website generated from your business details. Built for speed and clarity.</p>
-                    </article>
+        <article class="service">
+          <h3>Instant Website Engine</h3>
+          <p>
+            A fast, clean website generated from your business details. Hosted instantly. Upgrade later to a fully custom version.
+          </p>
+        </article>
 
-                    <article class="service-card card-3">
-                        <div class="service-tag">Tools</div>
-                        <h3>Custom Workflow Tools</h3>
-                        <p>Purpose-built tools for Lawyers and CAs to eliminate repetitive documentation work.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
+        <article class="service service-offset-low">
+          <h3>Custom Automation Tools</h3>
+          <p>
+            Purpose-built tools for lawyers, CAs, consultants, and service professionals to eliminate repetitive documentation and manual processes.
+          </p>
+        </article>
+      </div>
+    </section>
 
-        <section class="note-section container">
-            <div class="founder-layout content-narrow">
-                <div class="photo-frame">
-                    <img src="your-photo.jpg" alt="Founder" onerror="this.style.display='none'">
-                    <div class="photo-fallback">MJ</div> 
-                </div>
-                <div class="founder-text">
-                    <h2>A quick note from me</h2>
-                    <p>I started PixelCraze because I saw too many businesses struggling with overcomplicated tools. I prefer simple systems that work quietly in the background.</p>
-                    <p class="signature">— Manas</p>
-                </div>
-            </div>
-        </section>
+    <!-- How It Works -->
+    <section class="process">
+      <h2>How it works</h2>
+      <ol>
+        <li>You explain your business</li>
+        <li>I design what should be automated vs manual</li>
+        <li>You get a working system</li>
+        <li>We refine only if needed</li>
+      </ol>
+    </section>
 
-        <section id="generator" class="generator-section container">
-            <div class="content-medium">
-                <div class="generator-header">
-                    <h2>Instant Web Engine</h2>
-                    <p>Experience the speed. Generate a business profile in 30 seconds.</p>
-                </div>
-                <form id="website-generator-form" class="generator-form">
-                    <div class="form-row">
-                        <input type="text" name="business_name" placeholder="Business Name" required>
-                        <input type="text" name="business_type" placeholder="Type (e.g. Law Firm)" required>
-                    </div>
-                    <div class="form-row">
-                        <input type="text" name="city" placeholder="City" required>
-                        <input type="text" name="services" placeholder="Services (comma separated)" required>
-                    </div>
-                    <input type="email" name="contact_email" placeholder="Your Email" required>
-                    <button type="submit" class="btn-primary" id="generate-btn">Generate Preview</button>
-                </form>
-            </div>
-        </section>
+    <!-- Why This Is Different -->
+    <section class="difference">
+      <h2>Why clients choose this over agencies</h2>
+      <ul>
+        <li>No bloated dashboards</li>
+        <li>No unnecessary features</li>
+        <li>No design trends just for looks</li>
+        <li>Built using simple, reliable tech</li>
+        <li>Easy to understand. Easy to maintain.</li>
+      </ul>
+    </section>
 
-        <section id="engine-preview" class="preview-section">
-            <div class="preview-frame">
-                <div class="watermark">Free demo site — Custom version available</div>
-                <div class="container preview-inner">
-                    <h1 id="tpl-headline"></h1>
-                    <p class="preview-sub" id="tpl-subheadline"></p>
-                    <div class="preview-content">
-                        <div class="preview-about">
-                            <h3>Our Story</h3>
-                            <p id="tpl-about"></p>
-                        </div>
-                        <div class="preview-services">
-                            <h3>What we do</h3>
-                            <ul id="tpl-services-list"></ul>
-                        </div>
-                    </div>
-                    <div class="preview-footer">
-                        <button id="tpl-cta-main" class="btn-primary"></button>
-                        <button id="tpl-upgrade-cta" class="link-secondary">Remove Watermark</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Founder Note -->
+    <section class="founder" aria-label="Founder note">
+      <h2>A quick note from me</h2>
+      <p>
+        I started PixelCraze after seeing how many small businesses were forced into overcomplicated tools they didn’t need.
+      </p>
+      <p>
+        I prefer simple systems that work quietly in the background — so you can focus on the actual business.
+      </p>
+      <p>
+        If something doesn’t need automation, I won’t sell it to you.
+      </p>
+    </section>
 
-        <section id="contact" class="cta-section container">
-            <p>Ready to build something useful?</p>
-            <a href="mailto:manas@pixelcraze.space" class="btn-primary">Let's talk</a>
-        </section>
-    </main>
+    <!-- CTA -->
+    <section class="cta" id="contact" aria-label="Contact">
+      <p>Want something built that actually saves time?</p>
+      <a href="mailto:hello@pixelcraze.space" class="cta-button">Let’s talk</a>
+    </section>
+  </main>
 
-    <footer class="site-footer container">
-        <p>&copy; <span id="year"></span> — PixelCraze Studio</p>
-        <p class="tech-note">Built with plain HTML, CSS, and JS. No frameworks.</p>
-    </footer>
+  <footer>
+    <p>© <span id="year"></span> — PixelCraze Studio</p>
+    <p class="footer-note">Built with plain HTML, CSS, and JavaScript</p>
+    <p class="easter-egg">No frameworks were harmed in the making of this site.</p>
+  </footer>
 
-    <script src="main.js"></script>
-    <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script src="script.js"></script>
 </body>
 </html>
