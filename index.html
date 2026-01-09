@@ -1,145 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PixelCraze Studio — Business Automation & Digital Systems</title>
-  <meta name="description" content="PixelCraze Studio builds modern websites, WhatsApp automation, and internal tools to help businesses scale faster." />
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelCraze Studio | Systems & Automation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <div class="noise-overlay"></div>
 
-  <!-- TOP STRIP -->
-  <div class="top-strip">
-    <div class="strip-track">
-      <span>⚡ Websites</span>
-      <span>🤖 WhatsApp Automation</span>
-      <span>📈 Business Tools</span>
-      <span>⚡ Websites</span>
-      <span>🤖 WhatsApp Automation</span>
-      <span>📈 Business Tools</span>
-    </div>
-  </div>
-
-  <!-- HEADER -->
-  <header class="header">
-    <div class="container header-inner">
-      <div class="logo">PixelCraze</div>
-      <nav>
-        <a href="#services">Services</a>
-        <a href="#process">Process</a>
-        <a href="#contact" class="nav-cta">Contact</a>
-      </nav>
-    </div>
-  </header>
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <h1>We build systems that help businesses grow faster.</h1>
-        <p>
-          From high-performance websites to WhatsApp automation and internal tools — we design digital systems that save time, increase conversions, and scale with you.
-        </p>
-        <div class="hero-buttons">
-          <a href="#services" class="btn primary">Explore Services</a>
-          <a href="#contact" class="btn ghost">Talk to Us</a>
+    <nav class="navbar">
+        <div class="container nav-content">
+            <div class="logo">PixelCraze<span class="dot">.</span></div>
+            <div class="nav-links">
+                <a href="#services">Services</a>
+                <a href="#process">The Flow</a>
+                <a href="#contact" class="cta-pill">Start a Project</a>
+            </div>
         </div>
-      </div>
+    </nav>
 
-      <div class="hero-visual">
-        <div class="glass-card">
-          <h3>⚙ System Snapshot</h3>
-          <ul>
-            <li>Website: Live</li>
-            <li>Automation: Running</li>
-            <li>Leads: Flowing</li>
-          </ul>
+    <main>
+        <section class="hero container">
+            <div class="reveal">
+                <span class="eyebrow">Digital Systems Architect</span>
+                <h1>I build systems that make small businesses <span class="italic">feel bigger.</span></h1>
+            </div>
+            <p class="hero-sub">Websites, WhatsApp automation, and custom tools built with plain tech, not bloat.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn-primary">View the Engine →</a>
+            </div>
+        </section>
+
+        <section id="services" class="container">
+            <h2 class="section-label">Capabilities</h2>
+            <div class="bento-grid">
+                <div class="bento-card tall">
+                    <span class="card-num">01</span>
+                    <h3>WhatsApp <br>Automation</h3>
+                    <p>Booking bots and outreach flows that actually talk like humans.</p>
+                </div>
+                <div class="bento-card wide">
+                    <span class="card-num">02</span>
+                    <h3>Instant Website Engine</h3>
+                    <p>A fast, clean website generated from your business details. No fluff, just speed.</p>
+                </div>
+                <div class="bento-card">
+                    <span class="card-num">03</span>
+                    <h3>Custom Tools</h3>
+                    <p>Automating the boring stuff for CAs and Lawyers.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="philosophy container">
+            <div class="philosophy-content">
+                <h2 class="section-label">The Philosophy</h2>
+                <p class="big-text">Most agencies sell you a website and disappear. I build <strong>infrastructure</strong>. Simple tech that works quietly in the background so you can focus on the business.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="final-cta container">
+            <div class="cta-inner">
+                <h2>Want something built <br>that actually saves time?</h2>
+                <a href="mailto:hello@pixelcraze.space" class="btn-huge">Let’s talk</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <div class="footer-line"></div>
+        <div class="footer-bottom">
+            <p>© <span id="year"></span> PixelCraze Studio</p>
+            <p class="muted">No frameworks were harmed in the making of this site.</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </footer>
 
-  <!-- SERVICES -->
-  <section class="section" id="services">
-    <div class="container">
-      <h2 class="section-title">Our Services</h2>
-
-      <div class="cards">
-        <div class="card">
-          <h3>WhatsApp Automation</h3>
-          <p>
-            Booking bots, follow-ups, lead qualification, and outreach systems that work 24/7 on WhatsApp.
-          </p>
-        </div>
-
-        <div class="card featured">
-          <h3>Instant Website Engine</h3>
-          <p>
-            Generate a modern, conversion-focused website instantly. Upgrade to custom design anytime.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>Custom Business Tools</h3>
-          <p>
-            Internal tools for lawyers, CAs, consultants, and service teams to eliminate repetitive work.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROCESS -->
-  <section class="section dark" id="process">
-    <div class="container">
-      <h2 class="section-title light">How We Work</h2>
-
-      <div class="steps">
-        <div class="step">
-          <span>01</span>
-          <h4>Understand</h4>
-          <p>We study your business and workflows.</p>
-        </div>
-        <div class="step">
-          <span>02</span>
-          <h4>Design</h4>
-          <p>We design systems that remove friction.</p>
-        </div>
-        <div class="step">
-          <span>03</span>
-          <h4>Build</h4>
-          <p>We build fast, scalable solutions.</p>
-        </div>
-        <div class="step">
-          <span>04</span>
-          <h4>Optimize</h4>
-          <p>We refine based on real usage.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="cta-section" id="contact">
-    <div class="container cta-box">
-      <h2>Ready to build something powerful?</h2>
-      <p>Let’s design systems that actually move your business forward.</p>
-      <a href="mailto:hello@pixelcraze.space" class="btn primary large">
-        Contact PixelCraze
-      </a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div class="container footer-inner">
-      <p>© <span id="year"></span> PixelCraze Studio</p>
-      <p>Modern digital systems for ambitious businesses.</p>
-    </div>
-  </footer>
-
-  <script src="script.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>
