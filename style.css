@@ -1,0 +1,283 @@
+:root {
+    /* Color Palette */
+    --bg: #0a0a0b;
+    --card-bg: #141416;
+    --text: #f4f4f5;
+    --text-muted: #a1a1aa;
+    --accent: #7c7cff;
+    --border: rgba(255, 255, 255, 0.08);
+
+    /* Spacing System (8pt Grid Theory) */
+    --nav-height: 90px;
+    --section-gap-desktop: 180px;
+    --section-gap-mobile: 110px;
+    --container-padding: 6%;
+}
+
+/* 1. RESET & FOUNDATION */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Texture Overlay */
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+/* 2. NAVIGATION (Fixed Alignment & Orientation) */
+.navbar {
+    height: var(--nav-height);
+    width: 100%;
+    display: flex;
+    align-items: center; /* Vertical alignment fix */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+}
+
+.nav-content {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Cross-axis centering for mobile */
+}
+
+.logo { 
+    font-weight: 800; 
+    font-size: 1.4rem; 
+    letter-spacing: -1.5px; 
+    text-decoration: none; 
+    color: var(--text);
+}
+.logo .dot { color: var(--accent); }
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.cta-pill {
+    border: 1px solid var(--accent);
+    padding: 12px 28px;
+    border-radius: 100px;
+    background: rgba(124, 124, 255, 0.05);
+    color: var(--text) !important;
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+/* 3. HERO (Typography Spacing Theory) */
+.hero { 
+    padding: 200px 0 100px; 
+    text-align: left; 
+}
+
+h1 { 
+    font-size: clamp(3rem, 9vw, 5.8rem); 
+    font-weight: 900; 
+    line-height: 0.95; 
+    letter-spacing: -0.05em; /* Correcting bold kerning blockiness */
+    margin-bottom: 40px; 
+    text-transform: uppercase;
+}
+
+.italic { font-style: italic; font-weight: 300; font-family: serif; }
+
+.hero-sub { 
+    color: var(--text-muted); 
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
+    max-width: 700px; 
+    margin-bottom: 60px; 
+    line-height: 1.5; 
+}
+
+/* 4. BENTO GRID CAPABILITIES */
+.capabilities { padding: var(--section-gap-desktop) 0; }
+.section-label { 
+    color: var(--accent); 
+    text-transform: uppercase; 
+    font-size: 0.8rem; 
+    letter-spacing: 5px; 
+    margin-bottom: 70px; 
+    display: block; 
+}
+
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 300px;
+    gap: 24px;
+}
+
+.bento-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 40px;
+    padding: 50px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Grid Span Logic */
+.card-wide { grid-column: span 8; }
+.card-slim { grid-column: span 4; }
+.card-tall { grid-row: span 2; }
+
+.card-num { 
+    position: absolute; top: 40px; right: 40px; 
+    font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; 
+}
+
+.bento-card h3 { font-size: 2.2rem; margin-bottom: 15px; letter-spacing: -1.5px; line-height: 1.1; }
+.bento-card p { color: var(--text-muted); font-size: 1.1rem; max-width: 90%; }
+
+/* 5. PHILOSOPHY (Visual Rhythm Fix) */
+.philosophy { 
+    padding: var(--section-gap-desktop) 0; 
+    background: linear-gradient(180deg, var(--bg) 0%, #0d0d10 100%);
+}
+
+.philosophy-wrapper {
+    max-width: 1000px;
+}
+
+.big-text { 
+    font-size: clamp(2rem, 5vw, 3.8rem); 
+    line-height: 1.25; /* Loosened for long-form reading */
+    letter-spacing: -2px; 
+    margin-bottom: 80px;
+}
+
+.philosophy-details {
+    display: flex;
+    gap: 100px;
+    border-top: 1px solid var(--border);
+    padding-top: 60px;
+}
+
+.philosophy p {
+    flex: 1;
+    color: var(--text-muted);
+    font-size: 1.3rem;
+    line-height: 1.8; /* Typography best practice for clarity */
+}
+
+/* 6. FOOTER (Expanded Prominence) */
+footer { 
+    padding: 160px 0 80px; 
+    border-top: 1px solid var(--border);
+    background: #050506;
+}
+
+.footer-main {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr 1fr;
+    gap: 120px;
+    margin-bottom: 120px;
+}
+
+.footer-brand .logo { font-size: 2rem; }
+.footer-brand p { margin-top: 25px; color: var(--text-muted); font-size: 1.1rem; max-width: 350px; }
+
+.footer-col h4 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
+    color: var(--accent);
+}
+
+.footer-col a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
+    transition: 0.3s;
+}
+
+.footer-col a:hover { color: var(--text); padding-left: 5px; }
+
+.footer-bottom { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    font-size: 0.9rem; 
+    color: var(--text-muted);
+    padding-top: 50px;
+    border-top: 1px solid var(--border);
+}
+
+/* 7. RESPONSIVE REFINEMENT (The Final Polish) */
+
+@media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .card-wide, .card-slim { grid-column: span 12; }
+    .card-tall { grid-row: auto; }
+    .bento-card { min-height: 350px; }
+    .footer-main { gap: 60px; }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --nav-height: 80px;
+    }
+
+    /* Fixed Disoriented Nav */
+    .nav-links a:not(.cta-pill) { display: none; } /* Focus only on Action for mobile */
+
+    .hero { padding: 140px 0 60px; text-align: center; }
+    .hero-sub { margin: 0 auto 40px; }
+
+    /* Philosophy Cramping Fix */
+    .philosophy { padding: var(--section-gap-mobile) 0; }
+    .philosophy-details { flex-direction: column; gap: 40px; }
+    .big-text { margin-bottom: 50px; }
+
+    /* Footer Expansion Fix */
+    footer { padding: 100px 0 40px; }
+    .footer-main { grid-template-columns: 1fr; gap: 50px; margin-bottom: 60px; }
+    .footer-bottom { flex-direction: column; gap: 30px; text-align: center; }
+}
