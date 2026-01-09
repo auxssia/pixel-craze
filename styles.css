@@ -1,246 +1,273 @@
-/* --- Global Resets & Variables --- */
 :root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --accent-color: #2563eb;
-    --gray-light: #f4f4f4;
-    --gray-dark: #333333;
-    --section-padding: 100px;
-    --mobile-padding: 60px;
+    --bg: #0a0a0b;
+    --card-bg: #141416;
+    --text: #f4f4f5;
+    --text-muted: #a1a1aa;
+    --accent: #7c7cff;
+    --border: rgba(255, 255, 255, 0.08);
+    --nav-height: 80px;
+    /* Fluid spacing variables */
+    --section-spacing-desktop: 160px;
+    --section-spacing-mobile: 100px;
 }
 
+/* 1. RESET & STABILITY */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+html { scroll-behavior: smooth; }
+
 body {
+    background-color: var(--bg);
+    color: var(--text);
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-color);
-    color: var(--text-color);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+.noise-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('https://grainy-gradients.vercel.app/noise.svg');
+    opacity: 0.04;
+    pointer-events: none;
+    z-index: 9999;
 }
 
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 5%;
+    padding: 0 40px;
 }
 
-a {
-    text-decoration: none;
-    color: inherit;
-    transition: 0.3s ease;
-}
-
-/* --- Navigation --- */
+/* 2. NAVIGATION (Orientation Fix) */
 .navbar {
-    height: 80px;
+    height: var(--nav-height);
+    width: 100%;
     display: flex;
-    align-items: center; /* Vertical centering */
+    align-items: center;
     position: sticky;
     top: 0;
-    background: rgba(255, 255, 255, 0.95);
-    z-index: 1000;
-    border-bottom: 1px solid #eee;
+    z-index: 100;
+    background: rgba(10, 10, 11, 0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
 }
 
-.nav-container {
+.nav-content {
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 5%;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Ensures logo and links are aligned */
+    align-items: center; /* Ensures vertical alignment on mobile/desktop */
 }
 
-.logo {
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -1px;
+.logo { 
+    font-weight: 800; 
+    font-size: 1.3rem; 
+    letter-spacing: -1px; 
+    text-decoration: none; 
+    color: var(--text);
 }
-
-.logo span {
-    color: var(--accent-color);
-}
+.logo .dot { color: var(--accent); }
 
 .nav-links {
     display: flex;
-    gap: 30px;
     align-items: center;
 }
 
 .nav-links a {
+    text-decoration: none;
+    color: var(--text-muted);
     font-size: 0.9rem;
+    margin-left: 30px;
+    transition: 0.3s;
+}
+
+.nav-links a:hover { color: var(--text); }
+
+.cta-pill {
+    border: 1px solid var(--border);
+    padding: 10px 24px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.03);
     font-weight: 600;
 }
 
-.nav-cta {
-    background: var(--text-color);
-    color: white !important;
-    padding: 8px 20px;
-    border-radius: 5px;
+/* 3. HERO (Improved Bold Spacing) */
+.hero { 
+    padding: 180px 0 100px; 
+    text-align: left; 
 }
 
-/* --- Hero Section --- */
-.hero {
-    padding: 150px 0 100px 0;
+.eyebrow { 
+    color: var(--accent); 
+    font-size: 0.75rem; 
+    letter-spacing: 3px; 
+    text-transform: uppercase; 
+    margin-bottom: 25px; 
+    display: block; 
 }
 
-.hero-text {
-    font-size: clamp(2.5rem, 8vw, 5rem);
-    font-weight: 800;
-    line-height: 1.1; /* Tighter line height for bold text */
-    letter-spacing: -0.04em; /* Better spacing for large bold headers */
-    margin-bottom: 20px;
+h1 { 
+    font-size: clamp(2.8rem, 8vw, 5.5rem); 
+    font-weight: 800; 
+    line-height: 1.05; 
+    letter-spacing: -0.04em; /* Theory: Tight but legible kerning for display type */
+    margin-bottom: 35px; 
 }
 
-.hero-text span {
-    color: var(--accent-color);
+.hero-sub { 
+    color: var(--text-muted); 
+    font-size: clamp(1.1rem, 2vw, 1.4rem); 
+    max-width: 650px; 
+    margin-bottom: 50px; 
+    line-height: 1.6; 
 }
 
-.hero-subtext {
-    font-size: 1.2rem;
-    color: var(--gray-dark);
-    max-width: 500px;
+/* 4. CAPABILITIES (Bento Grid) */
+.capabilities { padding: var(--section-spacing-desktop) 0; }
+.section-label { 
+    color: var(--text-muted); 
+    text-transform: uppercase; 
+    font-size: 0.75rem; 
+    letter-spacing: 4px; 
+    margin-bottom: 60px; 
+    display: block; 
 }
 
-/* --- Capabilities --- */
-.capabilities {
-    padding: var(--section-padding) 0;
-    background-color: var(--gray-light);
-}
-
-.section-title {
-    font-size: 2rem;
-    margin-bottom: 50px;
-}
-
-.grid {
+.bento-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 280px;
+    gap: 24px;
 }
 
-.card {
-    background: white;
-    padding: 40px;
-    border-radius: 12px;
-    border: 1px solid #eee;
+.bento-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 32px;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: border 0.3s ease;
 }
 
-.card h3 {
-    margin-bottom: 15px;
-}
+.bento-card:hover { border-color: var(--accent); }
+.bento-card.tall { grid-row: span 2; }
+.bento-card.wide { grid-column: span 2; }
 
-/* --- Philosophy (The Cramp Fix) --- */
-.philosophy {
-    padding: var(--section-padding) 0;
+.bento-card h3 { font-size: 1.8rem; margin-bottom: 12px; letter-spacing: -1px; }
+.bento-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
+
+/* 5. PHILOSOPHY (The "Anti-Cram" Fix) */
+.philosophy { 
+    padding: var(--section-spacing-desktop) 0; 
+    background: rgba(255,255,255,0.01);
 }
 
 .philosophy-content {
-    max-width: 800px;
+    max-width: 900px;
 }
 
-.philosophy-text {
-    font-size: 1.4rem;
-    line-height: 1.8; /* Increased for readability */
-    margin-bottom: 40px; /* Added spacing between paragraphs */
+.big-text { 
+    font-size: clamp(1.8rem, 4vw, 3.2rem); 
+    line-height: 1.4; /* Increased line-height for readability */
+    letter-spacing: -0.02em; 
 }
 
-/* --- Footer (The Space Fix) --- */
-footer {
-    background: var(--text-color);
-    color: white;
-    padding: 120px 0 60px 0; /* Huge increase in vertical padding */
+.philosophy-text-block {
+    margin-top: 60px; /* Separation from the title */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
 }
 
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 50px;
-    margin-bottom: 80px; /* Space before the bottom strip */
+.philosophy p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+    line-height: 1.8; /* Generous vertical rhythm */
 }
 
-.footer-brand p {
-    margin-top: 15px;
-    color: #999;
+/* 6. FOOTER (Enhanced Space) */
+footer { 
+    padding: 140px 0 60px; /* Much larger top padding */
+    border-top: 1px solid var(--border);
 }
 
-.footer-links {
-    display: flex;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
     gap: 80px;
+    margin-bottom: 100px;
 }
 
-.footer-group h4 {
-    margin-bottom: 20px;
-    font-size: 0.9rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: #666;
-}
+.footer-brand .logo { font-size: 1.5rem; }
+.footer-brand p { margin-top: 20px; color: var(--text-muted); max-width: 300px; }
 
-.footer-group a {
-    display: block;
-    margin-bottom: 12px;
-    color: #ccc;
-}
-
-.footer-bottom {
-    border-top: 1px solid #333;
-    padding-top: 40px;
-    text-align: center;
-    color: #666;
+.footer-col h4 {
     font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 25px;
+    color: var(--accent);
 }
 
-/* --- Mobile Responsiveness --- */
-@media (max-width: 768px) {
-    .navbar {
-        height: 70px;
+.footer-col a {
+    display: block;
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-bottom: 15px;
+    transition: 0.3s;
+}
+
+.footer-col a:hover { color: var(--text); }
+
+.footer-bottom { 
+    display: flex; 
+    justify-content: space-between; 
+    font-size: 0.8rem; 
+    color: var(--text-muted);
+    border-top: 1px solid var(--border);
+    padding-top: 40px;
+}
+
+/* 7. RESPONSIVE REFINEMENT (The Fixes) */
+
+@media (max-width: 950px) {
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .bento-card.tall, .bento-card.wide { grid-row: auto; grid-column: auto; }
+    .bento-card { min-height: 300px; }
+    
+    .philosophy-text-block { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+}
+
+@media (max-width: 600px) {
+    :root {
+        --nav-height: 70px;
     }
 
-    /* Fix for Disoriented Nav */
-    .nav-links {
-        gap: 15px;
-    }
+    .container { padding: 0 24px; }
 
-    .nav-links a:not(.nav-cta) {
-        display: none; /* Usually, we'd use a hamburger menu, but for now, hiding text links keeps it clean */
-    }
+    /* Nav orientation fix */
+    .nav-content { flex-direction: row; }
+    .nav-links a:not(.cta-pill) { display: none; } /* Only show CTA for clean mobile nav */
 
-    .hero {
-        padding: 100px 0 60px 0;
-    }
+    .hero { padding: 120px 0 60px; text-align: center; }
+    h1 { letter-spacing: -0.02em; line-height: 1.1; }
+    .hero-sub { margin: 0 auto 40px; }
 
-    .hero-text {
-        line-height: 1.2; /* Loosened slightly for mobile vertical stack */
-        letter-spacing: -0.02em;
-    }
+    /* Philosophy Spacing Fix */
+    .philosophy { padding: var(--section-spacing-mobile) 0; }
+    .big-text { line-height: 1.3; }
+    .philosophy p { font-size: 1.1rem; line-height: 1.7; }
 
-    /* Fix for Philosophy Cramping */
-    .philosophy {
-        padding: var(--mobile-padding) 0;
-    }
-
-    .philosophy-text {
-        font-size: 1.15rem; /* Slightly smaller text for mobile screens */
-        line-height: 1.7;
-        margin-bottom: 30px;
-    }
-
-    /* Fix for Footer Space */
-    .footer-container {
-        flex-direction: column;
-        gap: 60px;
-    }
-
-    .footer-links {
-        flex-direction: column;
-        gap: 40px;
-    }
+    /* Footer Spacing Fix */
+    footer { padding: 100px 0 40px; }
+    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
 }
