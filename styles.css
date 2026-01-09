@@ -1,24 +1,29 @@
 :root {
+    /* Color Palette */
     --bg: #0a0a0b;
     --card-bg: #141416;
     --text: #f4f4f5;
     --text-muted: #a1a1aa;
     --accent: #7c7cff;
     --border: rgba(255, 255, 255, 0.08);
-    --nav-height: 80px;
-    /* Fluid spacing variables */
-    --section-spacing-desktop: 160px;
-    --section-spacing-mobile: 100px;
+
+    /* Spacing System (8pt Grid Theory) */
+    --nav-height: 90px;
+    --section-gap-desktop: 180px;
+    --section-gap-mobile: 110px;
+    --container-padding: 6%;
 }
 
-/* 1. RESET & STABILITY */
+/* 1. RESET & FOUNDATION */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 
 body {
     background-color: var(--bg);
@@ -29,32 +34,33 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Texture Overlay */
 .noise-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background: url('https://grainy-gradients.vercel.app/noise.svg');
-    opacity: 0.04;
+    opacity: 0.03;
     pointer-events: none;
     z-index: 9999;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 var(--container-padding);
 }
 
-/* 2. NAVIGATION (Orientation Fix) */
+/* 2. NAVIGATION (Fixed Alignment & Orientation) */
 .navbar {
     height: var(--nav-height);
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: center; /* Vertical alignment fix */
     position: sticky;
     top: 0;
-    z-index: 100;
+    z-index: 1000;
     background: rgba(10, 10, 11, 0.85);
-    backdrop-filter: blur(20px);
+    backdrop-filter: blur(24px);
     border-bottom: 1px solid var(--border);
 }
 
@@ -62,13 +68,13 @@ body {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Ensures vertical alignment on mobile/desktop */
+    align-items: center; /* Cross-axis centering for mobile */
 }
 
 .logo { 
     font-weight: 800; 
-    font-size: 1.3rem; 
-    letter-spacing: -1px; 
+    font-size: 1.4rem; 
+    letter-spacing: -1.5px; 
     text-decoration: none; 
     color: var(--text);
 }
@@ -77,143 +83,149 @@ body {
 .nav-links {
     display: flex;
     align-items: center;
+    gap: 40px;
 }
 
 .nav-links a {
     text-decoration: none;
     color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-left: 30px;
-    transition: 0.3s;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: 0.3s ease;
 }
 
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--accent); }
 
 .cta-pill {
-    border: 1px solid var(--border);
-    padding: 10px 24px;
+    border: 1px solid var(--accent);
+    padding: 12px 28px;
     border-radius: 100px;
-    background: rgba(255,255,255,0.03);
+    background: rgba(124, 124, 255, 0.05);
+    color: var(--text) !important;
     font-weight: 600;
+    font-size: 0.85rem;
 }
 
-/* 3. HERO (Improved Bold Spacing) */
+/* 3. HERO (Typography Spacing Theory) */
 .hero { 
-    padding: 180px 0 100px; 
+    padding: 200px 0 100px; 
     text-align: left; 
 }
 
-.eyebrow { 
-    color: var(--accent); 
-    font-size: 0.75rem; 
-    letter-spacing: 3px; 
-    text-transform: uppercase; 
-    margin-bottom: 25px; 
-    display: block; 
+h1 { 
+    font-size: clamp(3rem, 9vw, 5.8rem); 
+    font-weight: 900; 
+    line-height: 0.95; 
+    letter-spacing: -0.05em; /* Correcting bold kerning blockiness */
+    margin-bottom: 40px; 
+    text-transform: uppercase;
 }
 
-h1 { 
-    font-size: clamp(2.8rem, 8vw, 5.5rem); 
-    font-weight: 800; 
-    line-height: 1.05; 
-    letter-spacing: -0.04em; /* Theory: Tight but legible kerning for display type */
-    margin-bottom: 35px; 
-}
+.italic { font-style: italic; font-weight: 300; font-family: serif; }
 
 .hero-sub { 
     color: var(--text-muted); 
-    font-size: clamp(1.1rem, 2vw, 1.4rem); 
-    max-width: 650px; 
-    margin-bottom: 50px; 
-    line-height: 1.6; 
+    font-size: clamp(1.2rem, 2.5vw, 1.5rem); 
+    max-width: 700px; 
+    margin-bottom: 60px; 
+    line-height: 1.5; 
 }
 
-/* 4. CAPABILITIES (Bento Grid) */
-.capabilities { padding: var(--section-spacing-desktop) 0; }
+/* 4. BENTO GRID CAPABILITIES */
+.capabilities { padding: var(--section-gap-desktop) 0; }
 .section-label { 
-    color: var(--text-muted); 
+    color: var(--accent); 
     text-transform: uppercase; 
-    font-size: 0.75rem; 
-    letter-spacing: 4px; 
-    margin-bottom: 60px; 
+    font-size: 0.8rem; 
+    letter-spacing: 5px; 
+    margin-bottom: 70px; 
     display: block; 
 }
 
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 280px;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: 300px;
     gap: 24px;
 }
 
 .bento-card {
     background: var(--card-bg);
     border: 1px solid var(--border);
-    border-radius: 32px;
-    padding: 48px;
+    border-radius: 40px;
+    padding: 50px;
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    transition: border 0.3s ease;
 }
 
-.bento-card:hover { border-color: var(--accent); }
-.bento-card.tall { grid-row: span 2; }
-.bento-card.wide { grid-column: span 2; }
+/* Grid Span Logic */
+.card-wide { grid-column: span 8; }
+.card-slim { grid-column: span 4; }
+.card-tall { grid-row: span 2; }
 
-.bento-card h3 { font-size: 1.8rem; margin-bottom: 12px; letter-spacing: -1px; }
-.bento-card p { color: var(--text-muted); font-size: 1rem; line-height: 1.5; }
+.card-num { 
+    position: absolute; top: 40px; right: 40px; 
+    font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; 
+}
 
-/* 5. PHILOSOPHY (The "Anti-Cram" Fix) */
+.bento-card h3 { font-size: 2.2rem; margin-bottom: 15px; letter-spacing: -1.5px; line-height: 1.1; }
+.bento-card p { color: var(--text-muted); font-size: 1.1rem; max-width: 90%; }
+
+/* 5. PHILOSOPHY (Visual Rhythm Fix) */
 .philosophy { 
-    padding: var(--section-spacing-desktop) 0; 
-    background: rgba(255,255,255,0.01);
+    padding: var(--section-gap-desktop) 0; 
+    background: linear-gradient(180deg, var(--bg) 0%, #0d0d10 100%);
 }
 
-.philosophy-content {
-    max-width: 900px;
+.philosophy-wrapper {
+    max-width: 1000px;
 }
 
 .big-text { 
-    font-size: clamp(1.8rem, 4vw, 3.2rem); 
-    line-height: 1.4; /* Increased line-height for readability */
-    letter-spacing: -0.02em; 
+    font-size: clamp(2rem, 5vw, 3.8rem); 
+    line-height: 1.25; /* Loosened for long-form reading */
+    letter-spacing: -2px; 
+    margin-bottom: 80px;
 }
 
-.philosophy-text-block {
-    margin-top: 60px; /* Separation from the title */
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+.philosophy-details {
+    display: flex;
+    gap: 100px;
+    border-top: 1px solid var(--border);
+    padding-top: 60px;
 }
 
 .philosophy p {
+    flex: 1;
     color: var(--text-muted);
-    font-size: 1.2rem;
-    line-height: 1.8; /* Generous vertical rhythm */
+    font-size: 1.3rem;
+    line-height: 1.8; /* Typography best practice for clarity */
 }
 
-/* 6. FOOTER (Enhanced Space) */
+/* 6. FOOTER (Expanded Prominence) */
 footer { 
-    padding: 140px 0 60px; /* Much larger top padding */
+    padding: 160px 0 80px; 
     border-top: 1px solid var(--border);
+    background: #050506;
 }
 
-.footer-grid {
+.footer-main {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 80px;
-    margin-bottom: 100px;
+    grid-template-columns: 2.5fr 1fr 1fr;
+    gap: 120px;
+    margin-bottom: 120px;
 }
 
-.footer-brand .logo { font-size: 1.5rem; }
-.footer-brand p { margin-top: 20px; color: var(--text-muted); max-width: 300px; }
+.footer-brand .logo { font-size: 2rem; }
+.footer-brand p { margin-top: 25px; color: var(--text-muted); font-size: 1.1rem; max-width: 350px; }
 
 .footer-col h4 {
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 25px;
+    letter-spacing: 3px;
+    margin-bottom: 35px;
     color: var(--accent);
 }
 
@@ -221,53 +233,51 @@ footer {
     display: block;
     color: var(--text-muted);
     text-decoration: none;
-    margin-bottom: 15px;
+    margin-bottom: 18px;
+    font-size: 1.05rem;
     transition: 0.3s;
 }
 
-.footer-col a:hover { color: var(--text); }
+.footer-col a:hover { color: var(--text); padding-left: 5px; }
 
 .footer-bottom { 
     display: flex; 
     justify-content: space-between; 
-    font-size: 0.8rem; 
+    align-items: center;
+    font-size: 0.9rem; 
     color: var(--text-muted);
+    padding-top: 50px;
     border-top: 1px solid var(--border);
-    padding-top: 40px;
 }
 
-/* 7. RESPONSIVE REFINEMENT (The Fixes) */
+/* 7. RESPONSIVE REFINEMENT (The Final Polish) */
 
-@media (max-width: 950px) {
+@media (max-width: 1024px) {
     .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-    .bento-card.tall, .bento-card.wide { grid-row: auto; grid-column: auto; }
-    .bento-card { min-height: 300px; }
-    
-    .philosophy-text-block { grid-template-columns: 1fr; gap: 40px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+    .card-wide, .card-slim { grid-column: span 12; }
+    .card-tall { grid-row: auto; }
+    .bento-card { min-height: 350px; }
+    .footer-main { gap: 60px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     :root {
-        --nav-height: 70px;
+        --nav-height: 80px;
     }
 
-    .container { padding: 0 24px; }
+    /* Fixed Disoriented Nav */
+    .nav-links a:not(.cta-pill) { display: none; } /* Focus only on Action for mobile */
 
-    /* Nav orientation fix */
-    .nav-content { flex-direction: row; }
-    .nav-links a:not(.cta-pill) { display: none; } /* Only show CTA for clean mobile nav */
-
-    .hero { padding: 120px 0 60px; text-align: center; }
-    h1 { letter-spacing: -0.02em; line-height: 1.1; }
+    .hero { padding: 140px 0 60px; text-align: center; }
     .hero-sub { margin: 0 auto 40px; }
 
-    /* Philosophy Spacing Fix */
-    .philosophy { padding: var(--section-spacing-mobile) 0; }
-    .big-text { line-height: 1.3; }
-    .philosophy p { font-size: 1.1rem; line-height: 1.7; }
+    /* Philosophy Cramping Fix */
+    .philosophy { padding: var(--section-gap-mobile) 0; }
+    .philosophy-details { flex-direction: column; gap: 40px; }
+    .big-text { margin-bottom: 50px; }
 
-    /* Footer Spacing Fix */
+    /* Footer Expansion Fix */
     footer { padding: 100px 0 40px; }
-    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .footer-main { grid-template-columns: 1fr; gap: 50px; margin-bottom: 60px; }
+    .footer-bottom { flex-direction: column; gap: 30px; text-align: center; }
 }
