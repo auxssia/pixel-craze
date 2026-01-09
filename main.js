@@ -1,182 +1,102 @@
 /**
- * PixelCraze Studio - AI Website Engine
- * Pure Vanilla JS Implementation
+ * PixelCraze Studio - AI Engine
  */
 
-const apiKey = ""; // Provisioned by environment at runtime
-const MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent";
+const apiKey = "AIzaSyCp67SEQ5V-HnxNMiSVmNJU56eAYQhxaV4"; 
+const MODEL_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
 /**
- * Utility: Generate a clean URL slug from business name
+ * Core: Call Gemini API
  */
-const generateSlug = (text) => {
-    return text
-        .toString()
-        .toLowerCase()
-        .trim()
-        .replace(/\s+/g, '-')
-        .replace(/[^\w-]+/g, '')
-        .replace(/--+/g, '-');
-};
-
-/**
- * Core: Call Gemini API with Exponential Backoff
- */
-async function callGeminiAPI(prompt, retryCount = 0) {
-    const payload = {
-        contents: [{
-            parts: [{ text: prompt }]
-        }],
-        generationConfig: {
-            responseMimeType: "application/json",
-            responseSchema: {
-                type: "OBJECT",
-                properties: {
-                    headline: { type: "STRING" },
-                    subheadline: { type: "STRING" },
-                    about_text: { type: "STRING" },
-                    services_list: {
-                        type: "ARRAY",
-                        items: { type: "STRING" }
-                    },
-                    primary_cta_text: { type: "STRING" }
-                },
-                required: ["headline", "subheadline", "about_text", "services_list", "primary_cta_text"]
-            }
-        }
-    };
-
-    try {
-        const response = await fetch(`${MODEL_URL}?key=${apiKey}`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
-
-        const result = await response.json();
-        const textResponse = result.candidates?.[0]?.content?.parts?.[0]?.text;
-        
-        if (!textResponse) throw new Error("Empty AI Response");
-        
-        return JSON.parse(textResponse);
-    } catch (error) {
-        if (retryCount < 5) {
-            const waitTime = Math.pow(2, retryCount) * 1000;
-            await new Promise(resolve => setTimeout(resolve, waitTime));
-            return callGeminiAPI(prompt, retryCount + 1);
-        }
-        throw error;
-    }
-}
-
-/**
- * UI: Update DOM with generated content
- */
-function renderWebsite(content, userData) {
-    // 1. Update Head
-    document.title = `${userData.business_name} | ${userData.business_type}`;
-
-    // 2. Inject Content
-    const elements = {
-        'tpl-headline': content.headline,
-        'tpl-subheadline': content.subheadline,
-        'tpl-about': content.about_text,
-        'tpl-business-name': userData.business_name,
-        'tpl-cta-main': content.primary_cta_text,
-        'tpl-watermark': "Free demo site — Custom version available"
-    };
-
-    Object.entries(elements).forEach(([id, value]) => {
-        const el = document.getElementById(id);
-        if (el) el.textContent = value;
-    });
-
-    // 3. Render Services List
-    const servicesContainer = document.getElementById('tpl-services-list');
-    if (servicesContainer && content.services_list) {
-        servicesContainer.innerHTML = ''; 
-        content.services_list.forEach(service => {
-            const li = document.createElement('li');
-            li.textContent = service;
-            li.style.marginBottom = "0.5rem";
-            servicesContainer.appendChild(li);
-        });
-    }
-
-    // 4. Update Custom CTA mailto
-    const upgradeBtn = document.getElementById('tpl-upgrade-cta');
-    if (upgradeBtn) {
-        upgradeBtn.textContent = "Get this website without watermark";
-        upgradeBtn.onclick = () => {
-            const subject = encodeURIComponent(`Upgrade Inquiry: ${userData.business_name}`);
-            window.location.href = `mailto:manas@pixelcraze.space?subject=${subject}`;
-        };
-    }
-
-    // 5. Show Preview Section and Scroll
-    const previewSection = document.getElementById('engine-preview');
-    if (previewSection) {
-        previewSection.classList.add('is-active');
-        previewSection.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-/**
- * Fallback: Default content if AI fails
- */
-function getFallbackContent(userData) {
-    return {
-        headline: `Expert ${userData.business_type} in ${userData.city}`,
-        subheadline: `Professional solutions tailored for your business needs.`,
-        about_text: `${userData.business_name} provides top-tier ${userData.business_type} services in ${userData.city}.`,
-        services_list: userData.services.split(',').map(s => s.trim()),
-        primary_cta_text: "Contact Us"
-    };
-}
-
-/**
- * Event: Handle Form Submission
- */
-async function handleGeneratorSubmit(event) {
-    event.preventDefault();
-    const form = event.target;
-    const formData = new FormData(form);
-    
-    const userData = {
-        business_name: formData.get('business_name'),
-        business_type: formData.get('business_type'),
-        city: formData.get('city'),
-        services: formData.get('services'),
-        contact_email: formData.get('contact_email')
-    };
-
-    const prompt = `Generate a business website profile for the following data:
+async function callGeminiAPI(userData) {
+    const prompt = `Generate a business website profile for:
     Name: ${userData.business_name}
     Type: ${userData.business_type}
     Location: ${userData.city}
-    Services Offered: ${userData.services}
+    Services: ${userData.services}
     
-    Tone: Professional, Human, High-end. No marketing fluff. Output valid JSON.`;
+    Output exactly this JSON structure:
+    {
+      "headline": "A bold human headline",
+      "subheadline": "A short supporting sentence",
+      "about_text": "A 2-sentence story about the business",
+      "services_list": ["Service 1", "Service 2", "Service 3"],
+      "primary_cta_text": "Contact Us"
+    }`;
 
+    const payload = {
+        contents: [{ parts: [{ text: prompt }] }],
+        generationConfig: { responseMimeType: "application/json" }
+    };
+
+    const response = await fetch(`${MODEL_URL}?key=${apiKey}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+    });
+
+    if (!response.ok) throw new Error("API Failed");
+
+    const data = await response.json();
+    return JSON.parse(data.candidates[0].content.parts[0].text);
+}
+
+/**
+ * UI: Inject Content
+ */
+function renderWebsite(content, userData) {
+    // Basic Fields
+    document.getElementById('tpl-headline').textContent = content.headline;
+    document.getElementById('tpl-subheadline').textContent = content.subheadline;
+    document.getElementById('tpl-about').textContent = content.about_text;
+    document.getElementById('tpl-business-name').textContent = userData.business_name;
+    document.getElementById('tpl-cta-main').textContent = content.primary_cta_text;
+
+    // Services List
+    const list = document.getElementById('tpl-services-list');
+    list.textContent = ''; // Safe Clear
+    content.services_list.forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+    });
+
+    // Handle Mailto
+    document.getElementById('tpl-upgrade-cta').onclick = () => {
+        const subject = encodeURIComponent(`Upgrade Inquiry: ${userData.business_name}`);
+        window.location.href = `mailto:manas@pixelcraze.space?subject=${subject}`;
+    };
+
+    // Reveal Section
+    const preview = document.getElementById('engine-preview');
+    preview.classList.add('is-active');
+    preview.scrollIntoView({ behavior: 'smooth' });
+}
+
+/**
+ * Event: Submission
+ */
+async function handleForm(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const userData = Object.fromEntries(formData.entries());
+    
     document.body.classList.add('is-generating');
+    const btn = document.getElementById('generate-btn');
+    const originalText = btn.textContent;
+    btn.textContent = "Generating...";
 
     try {
-        const aiContent = await callGeminiAPI(prompt);
+        const aiContent = await callGeminiAPI(userData);
         renderWebsite(aiContent, userData);
-    } catch (error) {
-        const fallback = getFallbackContent(userData);
-        renderWebsite(fallback, userData);
+    } catch (err) {
+        console.error(err);
+        alert("The engine is busy. Please try again in a moment.");
     } finally {
         document.body.classList.remove('is-generating');
+        btn.textContent = originalText;
     }
 }
 
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    const generatorForm = document.getElementById('website-generator-form');
-    if (generatorForm) {
-        generatorForm.addEventListener('submit', handleGeneratorSubmit);
-    }
-});
+// Init
+document.getElementById('website-generator-form').addEventListener('submit', handleForm);

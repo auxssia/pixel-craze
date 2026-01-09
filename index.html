@@ -20,7 +20,6 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero-section container" aria-label="Introduction">
             <div class="content-narrow">
                 <h1>I build systems that make small businesses feel bigger.</h1>
@@ -34,7 +33,6 @@
             </div>
         </section>
 
-        <!-- What I Actually Do -->
         <section class="intro-section container">
             <div class="content-medium">
                 <h2>This is not a typical web agency.</h2>
@@ -46,7 +44,6 @@
             </div>
         </section>
 
-        <!-- Services -->
         <section id="services" class="services-section container" aria-label="Services">
             <div class="content-wide">
                 <h2>Services</h2>
@@ -67,7 +64,6 @@
             </div>
         </section>
 
-        <!-- How It Works -->
         <section class="process-section container">
             <div class="content-medium">
                 <h2>How It Works</h2>
@@ -92,7 +88,6 @@
             </div>
         </section>
 
-        <!-- Why Different -->
         <section class="different-section container">
             <div class="content-narrow">
                 <h2>Why clients choose this over agencies</h2>
@@ -106,16 +101,23 @@
             </div>
         </section>
 
-        <!-- Founder Note -->
         <section class="note-section container" aria-label="Founder note">
-            <div class="content-narrowest">
-                <h2>A quick note from me</h2>
-                <p>I started PixelCraze after seeing how many small businesses were forced into overcomplicated tools they didn’t need.</p>
-                <p>I prefer simple systems that work quietly in the background — so you can focus on the actual business. If something doesn’t need automation, I won’t sell it to you.</p>
+            <div class="founder-layout content-narrow">
+                <div class="founder-image-area">
+                    <div class="photo-frame">
+                        <img src="your-photo.jpg" alt="Manas - Founder" onerror="this.style.display='none'">
+                        <div class="photo-fallback">MJ</div> 
+                    </div>
+                </div>
+                <div class="founder-text">
+                    <h2>A quick note from me</h2>
+                    <p>I started PixelCraze after seeing how many small businesses were forced into overcomplicated tools they didn’t need.</p>
+                    <p>I prefer simple systems that work quietly in the background — so you can focus on the actual business. If something doesn’t need automation, I won’t sell it to you.</p>
+                    <p class="signature">— Manas</p>
+                </div>
             </div>
         </section>
 
-        <!-- Instant Engine Form -->
         <section id="generator" class="generator-section container">
             <div class="content-medium">
                 <h2>Instant Web Engine</h2>
@@ -130,15 +132,14 @@
                         <input type="text" name="services" placeholder="Services (comma separated)" required>
                     </div>
                     <input type="email" name="contact_email" placeholder="Your Email" required>
-                    <button type="submit" class="btn-primary">Generate Preview</button>
+                    <button type="submit" class="btn-primary" id="generate-btn">Generate Preview</button>
                 </form>
             </div>
         </section>
 
-        <!-- Instant Preview (Hidden by default) -->
         <section id="engine-preview" class="preview-section">
             <div class="preview-frame">
-                <div class="watermark" id="tpl-watermark"></div>
+                <div class="watermark" id="tpl-watermark">Free demo site — Custom version available</div>
                 <div class="preview-inner container">
                     <h1 id="tpl-headline"></h1>
                     <p class="preview-sub" id="tpl-subheadline"></p>
@@ -154,13 +155,12 @@
                     </div>
                     <div class="preview-footer">
                         <button id="tpl-cta-main" class="btn-primary"></button>
-                        <button id="tpl-upgrade-cta" class="link-secondary"></button>
+                        <button id="tpl-upgrade-cta" class="link-secondary">Get this website without watermark</button>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Final CTA -->
         <section id="contact" class="cta-section container" aria-label="Contact">
             <p>Want something built that actually saves time?</p>
             <a href="mailto:manas@pixelcraze.space" class="btn-primary">Let's talk</a>
