@@ -1,0 +1,324 @@
+/* PixelCraze Studio - CSS
+   Philosophy: Spaced, Asymmetric, Premium Dark
+*/
+
+:root {
+    --bg-color: #0E0F12;
+    --text-primary: #EAEAEA;
+    --text-muted: #9CA3AF;
+    --accent-color: #7C7CFF;
+    --border-color: #1F2937;
+    --system-fonts: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: var(--system-fonts);
+    line-height: 1.7;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+/* Width Discipline */
+.content-narrowest { max-width: 600px; }
+.content-narrow { max-width: 750px; }
+.content-medium { max-width: 900px; }
+.content-wide { max-width: 1100px; }
+
+/* Sections */
+section {
+    padding: 8rem 0; /* Generous breathing room */
+}
+
+/* Typography */
+h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+h2 {
+    font-size: 1.75rem;
+    color: var(--text-primary);
+    margin-bottom: 2.5rem;
+}
+
+h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+p {
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+}
+
+/* Header */
+.site-header {
+    padding: 2rem 0;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Hero */
+.hero-section {
+    padding: 12rem 0 8rem 0;
+    text-align: left;
+}
+
+.hero-subtext {
+    font-size: 1.25rem;
+    margin-bottom: 3rem;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: var(--accent-color);
+    color: white;
+    padding: 0.8rem 1.8rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+}
+
+.link-secondary {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 2px;
+}
+
+.link-secondary:hover {
+    color: var(--text-primary);
+    border-color: var(--accent-color);
+}
+
+/* Intro Text Blocks */
+.text-blocks p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* Services Grid (Asymmetric) */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.service-card {
+    padding: 2.5rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
+}
+
+.service-card:hover {
+    border-color: var(--accent-color);
+}
+
+/* Breaking Symmetry */
+.card-2 { margin-top: 2rem; }
+.card-3 { margin-top: -1rem; }
+
+/* Process List */
+.process-list {
+    list-style: none;
+    counter-reset: process-counter;
+}
+
+.process-list li {
+    counter-increment: process-counter;
+    margin-bottom: 3rem;
+    position: relative;
+    padding-left: 4rem;
+}
+
+.process-list li::before {
+    content: counter(process-counter);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    opacity: 0.5;
+}
+
+/* Different List */
+.diff-list {
+    list-style: none;
+}
+
+.diff-list li {
+    margin-bottom: 1rem;
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.diff-list li::before {
+    content: "—";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Generator Form */
+.generator-form {
+    background: #141519;
+    padding: 3rem;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+input, select, textarea {
+    background: #0E0F12;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    color: var(--text-primary);
+    font-family: var(--system-fonts);
+    width: 100%;
+}
+
+input:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+/* Preview Section */
+.preview-section {
+    display: none;
+    padding: 0;
+}
+
+.preview-section.is-active {
+    display: block;
+}
+
+.preview-frame {
+    background: white;
+    color: #0E0F12;
+    padding: 6rem 0;
+    position: relative;
+}
+
+.preview-frame p { color: #333; }
+.preview-frame h1, .preview-frame h3 { color: #0E0F12; }
+
+.watermark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: #f0f0f0;
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+.preview-inner h1 { text-align: center; margin-bottom: 1rem; }
+.preview-sub { text-align: center; font-size: 1.2rem; margin-bottom: 4rem; }
+
+.preview-content {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 4rem;
+}
+
+.preview-footer {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    align-items: center;
+}
+
+/* Footer */
+.site-footer {
+    padding: 4rem 0;
+    border-top: 1px solid var(--border-color);
+    text-align: left;
+    font-size: 0.85rem;
+}
+
+.footer-content p {
+    margin-bottom: 0.5rem;
+}
+
+.tech-note, .easter-egg {
+    opacity: 0.6;
+}
+
+.easter-egg {
+    font-style: italic;
+}
+
+/* Loading State */
+body.is-generating .btn-primary {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+/* Mobile Adjustments */
+@media (max-width: 768px) {
+    .form-row { grid-template-columns: 1fr; }
+    .hero-actions { flex-direction: column; align-items: flex-start; }
+    .preview-content { grid-template-columns: 1fr; }
+    section { padding: 4rem 0; }
+}
