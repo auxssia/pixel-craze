@@ -1,3 +1,4 @@
+/* Save as styles.css */
 :root {
     --bg: #0a0a0b;
     --card-bg: #141416;
@@ -5,216 +6,83 @@
     --text-muted: #a1a1aa;
     --accent: #7c7cff;
     --border: rgba(255, 255, 255, 0.08);
-    --font-main: 'Inter', sans-serif;
+    --nav-height: 80px; /* Reference for our scroll margin */
 }
+
+/* ... (Keep previous global styles) ... */
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
+body { background-color: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; overflow-x: hidden; }
 
-body {
-    background-color: var(--bg);
-    color: var(--text);
-    font-family: var(--font-main);
-    line-height: 1.6;
-    overflow-x: hidden;
+/* THE FIX: SCROLL MARGIN 
+   This ensures that when you click a nav link, 
+   the section title isn't hidden under the sticky nav.
+*/
+#services, #philosophy, #contact {
+    scroll-margin-top: var(--nav-height);
 }
 
-/* Sublte Film Grain Effect */
-.noise-overlay {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: url('https://grainy-gradients.vercel.app/noise.svg');
-    opacity: 0.04;
-    pointer-events: none;
-    z-index: 9999;
+.section-padding {
+    padding: 100px 0;
 }
 
-.container {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 40px;
+/* SLIMMER TOP STRIP */
+.top-strip {
+    background: var(--accent);
+    color: #000;
+    font-size: 10px; /* Smaller font */
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 6px 0; /* Very tight padding */
+    overflow: hidden;
+    white-space: nowrap;
 }
 
-/* Navigation */
+.strip-track {
+    display: flex;
+    gap: 60px;
+    animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+/* STICKY NAVBAR */
 .navbar {
-    padding: 30px 0;
+    height: var(--nav-height);
+    display: flex;
+    align-items: center;
     position: sticky;
     top: 0;
     z-index: 100;
+    background: rgba(10, 10, 11, 0.8);
     backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
 }
 
 .nav-content {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo {
-    font-weight: 800;
-    font-size: 1.2rem;
-    letter-spacing: -0.5px;
-}
-
-.logo .dot { color: var(--accent); }
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.9rem;
-    margin-left: 30px;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover { color: var(--text); }
-
-.cta-pill {
-    border: 1px solid var(--border);
-    padding: 8px 20px;
-    border-radius: 100px;
-    background: rgba(255,255,255,0.03);
-}
-
-/* Hero Section */
-.hero {
-    padding: 140px 0 100px;
-}
-
-.eyebrow {
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 2px;
-    color: var(--accent);
-    display: block;
-    margin-bottom: 20px;
-}
-
-h1 {
-    font-size: clamp(2.5rem, 6vw, 4.5rem);
-    line-height: 1.1;
-    font-weight: 800;
-    letter-spacing: -2px;
-    max-width: 900px;
-}
-
-.italic { font-style: italic; font-weight: 400; }
-
-.hero-sub {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    max-width: 600px;
-    margin: 30px 0 40px;
-}
-
-.btn-primary {
-    display: inline-block;
-    background: var(--text);
-    color: var(--bg);
-    padding: 18px 36px;
-    border-radius: 12px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform 0.2s;
-}
-
-.btn-primary:hover { transform: translateY(-3px); }
-
-/* Bento Grid */
-.section-label {
-    text-transform: uppercase;
-    font-size: 0.7rem;
-    color: var(--text-muted);
-    letter-spacing: 3px;
-    margin-bottom: 40px;
-    display: block;
-}
-
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-auto-rows: 240px;
-    gap: 20px;
-}
-
-.bento-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 24px;
-    padding: 40px;
-    position: relative;
-    transition: border-color 0.4s;
-}
-
+/* BENTO & HERO (Keep from previous, but ensure padding is consistent) */
+.hero { padding: 120px 0 60px; }
+.bento-grid { display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 220px; gap: 20px; }
+.bento-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 40px; transition: 0.3s; }
 .bento-card:hover { border-color: var(--accent); }
-
 .bento-card.tall { grid-row: span 2; }
 .bento-card.wide { grid-column: span 2; }
 
-.card-num {
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    opacity: 0.5;
-}
-
-.bento-card h3 { margin-bottom: 15px; font-size: 1.5rem; }
-.bento-card p { color: var(--text-muted); font-size: 0.95rem; }
-
-/* Philosophy */
-.philosophy { padding: 150px 0; }
-.big-text {
-    font-size: clamp(1.5rem, 4vw, 2.8rem);
-    line-height: 1.3;
-    letter-spacing: -1px;
-}
-
-/* Final CTA */
-.final-cta { padding-bottom: 150px; text-align: center; }
-.cta-inner {
-    background: #111113;
-    padding: 100px 40px;
-    border-radius: 40px;
-    border: 1px solid var(--border);
-}
-
-.cta-inner h2 { font-size: 3rem; margin-bottom: 40px; }
-
-.btn-huge {
-    font-size: 1.5rem;
-    color: var(--text);
-    text-decoration: none;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 5px;
-    transition: opacity 0.3s;
-}
-
-.btn-huge:hover { opacity: 0.7; }
-
-/* Footer */
-footer { padding-bottom: 60px; }
-.footer-line { height: 1px; background: var(--border); margin-bottom: 40px; }
-.footer-bottom {
-    display: flex;
-    justify-content: space-between;
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-/* Animations */
-.reveal {
-    animation: revealUp 1.2s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-@keyframes revealUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-@media (max-width: 768px) {
-    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-    .bento-card.wide { grid-column: auto; }
-    .hero { padding-top: 80px; }
-}
+/* RE-USE OLD NOISE/BTN STYLES */
+.noise-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('https://grainy-gradients.vercel.app/noise.svg'); opacity: 0.04; pointer-events: none; z-index: 9999; }
+.logo { font-weight: 800; } .logo .dot { color: var(--accent); }
+.nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.85rem; margin-left: 25px; }
+.cta-pill { border: 1px solid var(--border); padding: 8px 18px; border-radius: 100px; }
+h1 { font-size: clamp(2.2rem, 5vw, 4rem); letter-spacing: -2px; line-height: 1.1; }
+.hero-sub { color: var(--text-muted); margin: 20px 0 40px; font-size: 1.1rem; }
+.btn-primary { background: #fff; color: #000; padding: 15px 30px; border-radius: 10px; text-decoration: none; font-weight: 600; }
