@@ -1,4 +1,4 @@
-/* --- 1. CONFIG & TOKENS --- */
+/* --- 1. THEME & TOKENS --- */
 :root {
     --bg: #0a0a0b;
     --card-bg: #141416;
@@ -8,8 +8,7 @@
     --border: rgba(255, 255, 255, 0.08);
     
     --nav-height: 90px;
-    --section-padding: 180px;
-    --mobile-padding: 100px;
+    --section-spacing: 160px; /* Enhanced vertical breathing room */
 }
 
 /* --- 2. RESET --- */
@@ -33,6 +32,7 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+/* Suble Film Grain for Depth */
 .noise-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -43,12 +43,12 @@ body {
 }
 
 .container {
-    max-width: 1300px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 0 6%;
+    padding: 0 40px;
 }
 
-/* --- 3. NAVBAR (Alignment Fix) --- */
+/* --- 3. NAVBAR (Disorientation Fix) --- */
 .navbar {
     height: var(--nav-height);
     width: 100%;
@@ -59,25 +59,25 @@ body {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     display: flex;
-    align-items: center; /* Vertical alignment for all elements */
+    align-items: center; /* PERFECT VERTICAL CENTERING */
 }
 
 .nav-content {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* Cross-axis centering */
+    align-items: center;
 }
 
 .logo {
     font-weight: 900;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     letter-spacing: -1.5px;
     text-decoration: none;
     color: var(--text);
 }
 
-.logo .dot { color: var(--accent); }
+.logo span { color: var(--accent); }
 
 .nav-links {
     display: flex;
@@ -100,19 +100,19 @@ body {
     border: 1px solid var(--border);
     border-radius: 100px;
     background: rgba(255, 255, 255, 0.03);
-    color: var(--text) !important;
+    font-weight: 600;
 }
 
-/* --- 4. HERO --- */
+/* --- 4. HERO (Typography Spacing Theory) --- */
 .hero {
-    padding: 220px 0 120px;
+    padding: 200px 0 100px;
 }
 
 .hero-text {
-    font-size: clamp(2.8rem, 8.5vw, 6rem);
+    font-size: clamp(3.5rem, 8vw, 6rem);
     font-weight: 900;
     line-height: 0.95;
-    letter-spacing: -0.05em; /* Typographic theory: tighter kerning for large bold headers */
+    letter-spacing: -0.05em; /* Tighter kerning for bold display type */
     margin-bottom: 40px;
     text-transform: uppercase;
 }
@@ -125,15 +125,15 @@ body {
 }
 
 .hero-sub {
-    font-size: clamp(1.1rem, 2vw, 1.4rem);
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
     color: var(--text-muted);
-    max-width: 650px;
+    max-width: 600px;
     line-height: 1.5;
 }
 
-/* --- 5. BENTO GRID CAPABILITIES --- */
+/* --- 5. BENTO GRID (The Mistake Fix) --- */
 .capabilities {
-    padding: var(--section-padding) 0;
+    padding: var(--section-spacing) 0;
 }
 
 .section-label {
@@ -143,12 +143,12 @@ body {
     letter-spacing: 4px;
     color: var(--accent);
     margin-bottom: 60px;
-    font-weight: 700;
+    font-weight: 800;
 }
 
 .bento-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* 3 column laptop grid */
     grid-auto-rows: 280px;
     gap: 24px;
 }
@@ -157,12 +157,17 @@ body {
     background: var(--card-bg);
     border: 1px solid var(--border);
     border-radius: 40px;
-    padding: 48px;
+    padding: 40px;
     position: relative;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-end; /* Text sits at bottom for Bento style */
+    overflow: hidden;
 }
+
+/* Bento Sizing Logic */
+.card-wide { grid-column: span 2; }
+.card-tall { grid-row: span 2; }
 
 .card-num {
     position: absolute;
@@ -170,65 +175,59 @@ body {
     right: 40px;
     font-size: 0.8rem;
     color: var(--text-muted);
-    opacity: 0.4;
+    opacity: 0.3;
 }
 
-/* Bento Sizing Logic */
-.bento-card.wide { grid-column: span 2; }
-.bento-card.tall { grid-row: span 2; }
-
 .bento-card h3 {
-    font-size: 2rem;
-    margin-bottom: 12px;
+    font-size: 2.2rem;
+    margin-bottom: 15px;
     letter-spacing: -1.5px;
     line-height: 1.1;
 }
 
 .bento-card p {
     color: var(--text-muted);
-    font-size: 1.05rem;
+    font-size: 1.1rem;
     max-width: 90%;
 }
 
-/* --- 6. PHILOSOPHY (Visual Rhythm Fix) --- */
+/* --- 6. PHILOSOPHY (Enhanced Spacing) --- */
 .philosophy {
-    padding: var(--section-padding) 0;
+    padding: var(--section-spacing) 0;
 }
 
-.philosophy-wrapper {
-    max-width: 1000px;
-}
+.philosophy-wrapper { max-width: 1000px; }
 
 .big-text {
-    font-size: clamp(1.8rem, 4.5vw, 3.8rem);
+    font-size: clamp(2.2rem, 5vw, 4rem);
     line-height: 1.2;
     letter-spacing: -2px;
     margin-bottom: 80px;
 }
 
-.philosophy-columns {
-    display: flex;
-    gap: 100px;
-    border-top: 1px solid var(--border);
-    padding-top: 60px;
+.philosophy-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Split view for laptop readability */
+    gap: 80px;
 }
 
-.philosophy-columns p {
-    flex: 1;
-    font-size: 1.3rem;
+.philosophy-content p {
+    font-size: 1.25rem;
     color: var(--text-muted);
-    line-height: 1.8; /* Generous line height for clarity */
+    line-height: 1.8;
 }
 
-/* --- 7. FOOTER (Space Fix) --- */
+/* --- 7. FOOTER (Scale & prominence) --- */
 footer {
-    padding: 160px 0 80px; /* High top padding for prominence */
+    padding: 160px 0 80px; /* Huge top padding to make it a section */
     border-top: 1px solid var(--border);
+    background: #050506;
 }
 
-.footer-top {
-    display: flex;
-    justify-content: space-between;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* Laptop 3-column footer */
+    gap: 100px;
     margin-bottom: 100px;
 }
 
@@ -236,32 +235,28 @@ footer {
 .footer-brand p {
     margin-top: 25px;
     color: var(--text-muted);
-    max-width: 320px;
+    max-width: 350px;
+    font-size: 1.1rem;
 }
 
-.footer-links {
-    display: flex;
-    gap: 100px;
-}
-
-.footer-group h4 {
+.footer-nav h4 {
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 2px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
     color: var(--accent);
 }
 
-.footer-group a {
+.footer-nav a {
     display: block;
     text-decoration: none;
     color: var(--text-muted);
-    margin-bottom: 15px;
+    margin-bottom: 18px;
     font-size: 1.1rem;
     transition: 0.3s;
 }
 
-.footer-group a:hover { color: var(--text); }
+.footer-nav a:hover { color: var(--text); }
 
 .footer-bottom {
     display: flex;
@@ -272,28 +267,21 @@ footer {
     color: var(--text-muted);
 }
 
-/* --- 8. MOBILE RESPONSIVENESS --- */
-@media (max-width: 950px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-    }
-    .bento-card.wide, .bento-card.tall { grid-column: span 1; grid-row: auto; }
-    .bento-card { min-height: 320px; }
-    
-    .footer-top { flex-direction: column; gap: 60px; }
+/* --- 8. RESPONSIVE (Maintaining integrity) --- */
+@media (max-width: 1024px) {
+    .bento-grid { grid-template-columns: 1fr 1fr; }
+    .footer-grid { gap: 60px; }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .navbar { height: 80px; }
-    .nav-links a:not(.cta-pill) { display: none; } /* Focus on CTA for mobile clarity */
+    .nav-links { display: none; } /* Hamburger should go here if needed */
     
-    .hero { padding: 140px 0 60px; text-align: center; }
-    .hero-sub { margin: 0 auto; }
+    .hero { padding: 140px 0 60px; }
+    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
+    .card-wide, .card-tall { grid-column: span 1; grid-row: auto; }
+    .bento-card { min-height: 300px; }
     
-    .philosophy-columns { flex-direction: column; gap: 40px; }
-    .philosophy { padding: var(--mobile-padding) 0; }
-    
-    .footer-links { flex-direction: column; gap: 40px; }
-    .footer-bottom { flex-direction: column; gap: 20px; text-align: center; }
+    .philosophy-content { grid-template-columns: 1fr; gap: 40px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 60px; }
 }
