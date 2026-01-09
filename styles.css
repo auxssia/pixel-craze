@@ -192,3 +192,103 @@ footer { padding-bottom: 80px; }
     .bento-card.tall, .bento-card.wide { grid-row: auto; grid-column: auto; }
     .bento-card { min-height: 280px; }
 }
+
+/* Add this to your styles.css */
+
+/* 1. Global Responsive Typography */
+:root {
+    /* Responsive font sizes: clamp(min, preferred, max) */
+    --h1-size: clamp(2.2rem, 8vw, 4.5rem);
+    --h2-size: clamp(1.8rem, 5vw, 3rem);
+    --body-size: clamp(1rem, 2vw, 1.1rem);
+}
+
+h1 { font-size: var(--h1-size); }
+h2 { font-size: var(--h2-size); }
+p { font-size: var(--body-size); }
+
+/* 2. Media Query for Tablets (900px and down) */
+@media (max-width: 900px) {
+    .container {
+        padding: 0 24px;
+    }
+    
+    .bento-grid {
+        grid-template-columns: 1fr 1fr; /* 2 columns for tablets */
+        grid-auto-rows: minmax(200px, auto);
+    }
+
+    .bento-card.wide {
+        grid-column: span 2;
+    }
+}
+
+/* 3. Media Query for Phones (600px and down) */
+@media (max-width: 600px) {
+    .navbar {
+        height: auto;
+        padding: 20px 0;
+    }
+
+    .nav-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 15px;
+        margin-top: 5px;
+    }
+
+    .nav-links a {
+        margin: 0;
+        font-size: 0.8rem;
+    }
+
+    .hero {
+        padding: 80px 0 40px;
+        text-align: center;
+    }
+
+    .hero-sub {
+        margin: 20px auto 30px;
+    }
+
+    .bento-grid {
+        grid-template-columns: 1fr; /* 1 column for phones */
+    }
+
+    .bento-card.tall, .bento-card.wide {
+        grid-row: auto;
+        grid-column: auto;
+    }
+
+    .cta-inner h2 {
+        font-size: 1.8rem;
+    }
+}
+
+.social-proof {
+    padding: 40px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    background: rgba(255,255,255,0.01);
+    overflow: hidden;
+}
+
+.proof-track {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 100px;
+    opacity: 0.3; /* Makes them feel subtle and "premium" */
+    animation: marquee 40s linear infinite reverse;
+    width: max-content;
+}
+
+.proof-track span {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
