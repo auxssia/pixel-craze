@@ -1,26 +1,27 @@
-// 1. Set current year
+// 1. Footer Year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// 2. Intersection Observer for Scroll Animations
-const observerOptions = { threshold: 0.15 };
+// 2. Smooth Reveal Animation
+const revealOptions = { threshold: 0.15 };
 
-const revealOnScroll = new IntersectionObserver((entries) => {
+const revealCallback = (entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
         }
     });
-}, observerOptions);
+};
 
-// Target all sections and cards
+const observer = new IntersectionObserver(revealCallback, revealOptions);
+
 document.querySelectorAll('.bento-card, .philosophy, .cta-inner').forEach(el => {
     el.classList.add('reveal-hidden');
-    revealOnScroll.observe(el);
+    observer.observe(el);
 });
 
-// Inline Styles for Animations (to keep CSS clean)
-const style = document.createElement('style');
-style.textContent = `
+// Create animation styles dynamically
+const styleTag = document.createElement('style');
+styleTag.innerHTML = `
     .reveal-hidden {
         opacity: 0;
         transform: translateY(40px);
@@ -31,4 +32,4 @@ style.textContent = `
         transform: translateY(0) !important;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(styleTag);
