@@ -1,23 +1,34 @@
-// Save as main.js
+// 1. Set current year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Reveal animation on scroll
-const observer = new IntersectionObserver((entries) => {
+// 2. Intersection Observer for Scroll Animations
+const observerOptions = { threshold: 0.15 };
+
+const revealOnScroll = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('visible');
         }
     });
-}, { threshold: 0.1 });
+}, observerOptions);
 
+// Target all sections and cards
 document.querySelectorAll('.bento-card, .philosophy, .cta-inner').forEach(el => {
-    el.style.opacity = "0";
-    el.style.transform = "translateY(30px)";
-    el.style.transition = "all 0.8s cubic-bezier(0.19, 1, 0.22, 1)";
-    observer.observe(el);
+    el.classList.add('reveal-hidden');
+    revealOnScroll.observe(el);
 });
 
-// Adding visible class via observer
+// Inline Styles for Animations (to keep CSS clean)
 const style = document.createElement('style');
-style.innerHTML = `.visible { opacity: 1 !important; transform: translateY(0) !important; }`;
+style.textContent = `
+    .reveal-hidden {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+    .visible {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
+`;
 document.head.appendChild(style);
