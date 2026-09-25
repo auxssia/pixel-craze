@@ -1,7 +1,22 @@
 // 1. Footer Year
-document.getElementById("year").textContent = new Date().getFullYear();
+const yearEl = document.getElementById("year");
+if (yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+}
 
-// 2. Smooth Reveal Animation
+// 2. Live IST Clock
+function updateClock() {
+    const clockEl = document.getElementById('ist-clock');
+    if (clockEl) {
+        const options = { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        const timeString = new Date().toLocaleTimeString('en-US', options);
+        clockEl.textContent = `${timeString}`;
+    }
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// 3. Smooth Reveal Animation
 const revealOptions = { threshold: 0.15 };
 
 const revealCallback = (entries) => {
@@ -14,7 +29,8 @@ const revealCallback = (entries) => {
 
 const observer = new IntersectionObserver(revealCallback, revealOptions);
 
-document.querySelectorAll('.bento-card, .philosophy, .cta-inner').forEach(el => {
+// Target old and new elements
+document.querySelectorAll('.bento-card, .philosophy, .cta-inner, #ai-automation').forEach(el => {
     el.classList.add('reveal-hidden');
     observer.observe(el);
 });
@@ -26,6 +42,7 @@ styleTag.innerHTML = `
         opacity: 0;
         transform: translateY(40px);
         transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+        will-change: transform, opacity;
     }
     .visible {
         opacity: 1 !important;
@@ -33,3 +50,9 @@ styleTag.innerHTML = `
     }
 `;
 document.head.appendChild(styleTag);
+
+// 4. Developer Easter Egg
+console.log(
+    "%cHello from PixelCraze! Built by an elite dev. ☕ Contact: manas@pixelcraze.space", 
+    "color:#7c7cff; font-size:16px; font-weight:bold;"
+);

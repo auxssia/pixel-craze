@@ -8,7 +8,7 @@
     --border: rgba(255, 255, 255, 0.08);
     
     --nav-height: 90px;
-    --section-spacing: 160px;
+    --section-spacing: 10rem;
 }
 
 /* --- 2. RESET --- */
@@ -32,6 +32,11 @@ body {
     -webkit-font-smoothing: antialiased;
 }
 
+p {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    line-height: 1.5;
+}
+
 .noise-overlay {
     position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
@@ -44,7 +49,7 @@ body {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 40px;
+    padding: 0 2.5rem;
 }
 
 /* --- 3. NAVBAR (Alignment Fix) --- */
@@ -58,7 +63,7 @@ body {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
     display: flex;
-    align-items: center; /* Vertical Center */
+    align-items: center;
 }
 
 .nav-content {
@@ -74,6 +79,12 @@ body {
     letter-spacing: -1.5px;
     text-decoration: none;
     color: var(--text);
+    transition: 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--accent);
+    text-shadow: 0 0 8px var(--accent);
 }
 
 .logo span { color: var(--accent); }
@@ -92,7 +103,7 @@ body {
     transition: 0.3s;
 }
 
-.nav-links a:hover { color: var(--text); }
+.nav-links a:hover { color: var(--accent); }
 
 .cta-pill {
     padding: 12px 28px;
@@ -102,6 +113,12 @@ body {
     font-weight: 600;
     text-decoration: none;
     color: var(--text);
+    transition: 0.3s ease;
+}
+
+.cta-pill:hover {
+    background: var(--accent);
+    border-color: var(--accent);
 }
 
 /* --- 4. HERO --- */
@@ -110,9 +127,9 @@ body {
 }
 
 .hero-text {
-    font-size: clamp(3.5rem, 8vw, 6rem);
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
     font-weight: 900;
-    line-height: 0.95;
+    line-height: 1.1;
     letter-spacing: -0.05em;
     margin-bottom: 40px;
     text-transform: uppercase;
@@ -132,8 +149,8 @@ body {
     line-height: 1.5;
 }
 
-/* --- 5. BENTO GRID (Logic Fix) --- */
-.capabilities {
+/* --- 5. BENTO GRID --- */
+.capabilities, .philosophy, footer {
     padding: var(--section-spacing) 0;
 }
 
@@ -147,60 +164,157 @@ body {
     font-weight: 800;
 }
 
-.bento-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 column grid for laptops */
-    grid-auto-rows: 280px;
-    gap: 24px;
-}
-
-.bento-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 40px;
-    padding: 40px;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end; 
-    overflow: hidden;
-}
-
-/* Bento Sizing Logic */
-.card-wide { grid-column: span 2; }
-.card-tall { grid-row: span 2; }
-
-.card-num {
-    position: absolute;
-    top: 40px;
-    right: 40px;
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    opacity: 0.3;
-}
-
+/* Keep old headings for fallback (e.g. AI Workflow section) */
 .bento-card h3 {
-    font-size: 2.2rem;
+    font-size: clamp(1.75rem, 4vw, 2.2rem);
     margin-bottom: 15px;
     letter-spacing: -1.5px;
-    line-height: 1.1;
+    line-height: 1.2;
 }
-
 .bento-card p {
     color: var(--text-muted);
-    font-size: 1.1rem;
-    max-width: 90%;
+}
+
+/* Bento Grid Base */
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+.card-wide {
+  grid-column: span 2;
+}
+
+/* Card Flex Architecture */
+.bento-card {
+  background: var(--card-bg, #141416);
+  border: 1px solid var(--border, rgba(255,255,255,0.08));
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 320px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bento-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(124, 124, 255, 0.2);
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Header Flexbox: Stops Title & Badge Collision */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+.card-title {
+  font-size: clamp(1.4rem, 3vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0;
+  color: var(--text, #f4f4f5);
+}
+.card-badge {
+  font-family: monospace;
+  font-size: 0.75rem;
+  color: var(--accent, #7c7cff);
+  background: rgba(124, 124, 255, 0.1);
+  border: 1px solid rgba(124, 124, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+}
+
+/* Push Footer to Bottom */
+.card-desc, .ship-list {
+  flex-grow: 1;
+  color: var(--text-muted, #a1a1aa);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+.card-metric {
+  color: var(--accent, #7c7cff);
+  font-family: monospace;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.ship-list {
+    list-style: none;
+    padding: 0;
+}
+.ship-list li {
+    font-family: monospace;
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+.ship-list li::before {
+    content: "→";
+    color: var(--accent);
+}
+
+/* Footer / Button Anchoring */
+.card-footer {
+  margin-top: auto;
+}
+.card-btn {
+  display: inline-flex;
+  padding: 8px 16px;
+  font-size: 0.85rem;
+  color: var(--text, #f4f4f5);
+  border: 1px solid var(--border, rgba(255,255,255,0.1));
+  border-radius: 8px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+.card-btn:hover {
+  background: var(--text, #f4f4f5);
+  color: #000;
+}
+
+/* Status Indicator */
+.status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.status-dot {
+  width: 8px;
+  height: 8px;
+  background: #4ade80;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #4ade80;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.7; }
+    100% { transform: scale(0.95); opacity: 1; }
 }
 
 /* --- 6. PHILOSOPHY --- */
-.philosophy {
-    padding: var(--section-spacing) 0;
-}
-
 .philosophy-wrapper { max-width: 1000px; }
 
-.big-text {
-    font-size: clamp(2.2rem, 5vw, 4rem);
+.philosophy-wrapper h2, .big-text {
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
     letter-spacing: -2px;
     margin-bottom: 80px;
@@ -213,14 +327,11 @@ body {
 }
 
 .philosophy-content p {
-    font-size: 1.25rem;
     color: var(--text-muted);
-    line-height: 1.8;
 }
 
 /* --- 7. FOOTER --- */
 footer {
-    padding: 160px 0 80px;
     border-top: 1px solid var(--border);
     background: #050506;
 }
@@ -237,7 +348,6 @@ footer {
     margin-top: 25px;
     color: var(--text-muted);
     max-width: 350px;
-    font-size: 1.1rem;
 }
 
 .footer-nav h4 {
@@ -253,11 +363,10 @@ footer {
     text-decoration: none;
     color: var(--text-muted);
     margin-bottom: 18px;
-    font-size: 1.1rem;
     transition: 0.3s;
 }
 
-.footer-nav a:hover { color: var(--text); }
+.footer-nav a:hover { color: var(--accent); }
 
 .footer-bottom {
     display: flex;
@@ -270,18 +379,40 @@ footer {
 
 /* --- 8. MOBILE RESPONSIVE --- */
 @media (max-width: 1024px) {
-    .bento-grid { grid-template-columns: 1fr 1fr; }
+  :root { --section-spacing: 6rem; }
+  .container { padding: 0 2rem; }
+  .philosophy-content { grid-template-columns: 1fr; gap: 3rem; }
+
+  /* Bento Grid Tablet Overrides */
+  .bento-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
 }
 
 @media (max-width: 768px) {
-    .navbar { height: 80px; }
-    .nav-links { display: none; } 
-    
-    .hero { padding: 140px 0 60px; }
-    .bento-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-    .card-wide, .card-tall { grid-column: span 1; grid-row: auto; }
-    .bento-card { min-height: 300px; }
-    
-    .philosophy-content { grid-template-columns: 1fr; gap: 40px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 60px; }
+  :root { --section-spacing: 4rem; }
+  .container { padding: 0 1.5rem; }
+  .navbar { height: 80px; }
+  .nav-links { display: none; } 
+  .hero { padding: 140px 0 60px; }
+  .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .ist-clock { display: none; }
+
+  /* Bento Grid Mobile Overrides */
+  .bento-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .card-wide {
+    grid-column: span 1;
+  }
+  .bento-card {
+    padding: 1.5rem;
+    min-height: auto;
+  }
+  .card-header {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
 }
